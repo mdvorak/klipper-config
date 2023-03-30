@@ -2,6 +2,8 @@
 
 My own private klipper config - feel free to copy parts of it, but note that it is tailored to my HW modified Ender 3 V2.
 
+[Pinout](./_PINOUT.md)
+
 ## Usage
 
 Clone the repo
