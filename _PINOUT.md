@@ -4,6 +4,7 @@
 
 ```
 uart_pin: PA3
+sense_resistor: 0.15
 step_pin: PC2
 dir_pin: PB9
 enable_pin: !PC3
@@ -13,6 +14,7 @@ enable_pin: !PC3
 
 ```
 uart_pin: PC0
+sense_resistor: 0.15
 step_pin: PB8
 dir_pin: PB7
 enable_pin: !PC3
@@ -22,6 +24,7 @@ enable_pin: !PC3
 
 ```
 uart_pin: PA15
+sense_resistor: 0.15
 step_pin: PB6
 dir_pin: PB5
 enable_pin: !PC3
@@ -31,6 +34,7 @@ enable_pin: !PC3
 
 ```
 uart_pin: PB2
+sense_resistor: 0.15
 step_pin: PB4
 dir_pin: PB3
 enable_pin: !PC3
@@ -40,6 +44,7 @@ enable_pin: !PC3
 
 ```
 uart_pin: PA4
+sense_resistor: 0.11
 step_pin: PA14
 dir_pin: !PA13
 ```
