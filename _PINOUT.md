@@ -40,6 +40,7 @@ dir_pin: PB3
 enable_pin: !PC3
 ```
 
+<!--
 **Custom 2209**
 
 ```
@@ -48,3 +49,4 @@ sense_resistor: 0.11
 step_pin: PA14
 dir_pin: !PA13
 ```
+-->
