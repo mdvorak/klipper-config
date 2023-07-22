@@ -4,6 +4,8 @@ My own private klipper config - feel free to copy parts of it, but note that it 
 
 [Pinout](./_PINOUT.md)
 
+This config is now for use with Moonraker.
+
 ## Usage
 
 Clone the repo
@@ -12,42 +14,21 @@ Clone the repo
 git clone https://github.com/mdvorak/klipper-config.git
 ```
 
-Create `~/printer.cfg` file with following code
+Edit `printer.cfg` file with following code
 
 ```ini
 [include klipper-config/*.cfg]
 ```
 
-To update the code, run `git pull` in the repo and `RESTART` the klipper.
+## Auto-update
 
-### Update from OctoPrint
+Add this section to `moonraker.conf`
 
-Create update script `/usr/local/bin/update-klipper-config`
-
-```sh
-#!/bin/bash
-set -e
-
-pushd ~/klipper-config
-git pull
-popd
+```ini
+[update_manager klipper-config]
+type: git_repo
+primary_branch: main
+path: ~/klipper-config
+origin: https://github.com/mdvorak/klipper-config.git
+managed_services: klipper
 ```
-
-Install [GCODE System Commands](https://github.com/kantlivelong/OctoPrint-GCodeSystemCommands) plugin.
-
-Create `OCTO0` command with `/usr/local/bin/update-klipper-config` system command.
-
-_Note that this command is not available in a Klipper, it is an OctoPrint macro._
-
-### One-click Reload
-
-Install [Terminal Commands Extended](https://github.com/jneilliii/OctoPrint-TerminalCommandsExtended) plugin.
-
-Add command `Reload Config` with following code
-
-```gcode
-OCTO0
-RESTART
-```
-
-Do not run this during print.
