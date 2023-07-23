@@ -47,6 +47,12 @@ managed_services: klipper
 
 My own [crowsnest](https://github.com/mainsail-crew/crowsnest#readme) config is under [crowsnest.conf](./crowsnest.conf).
 
+Remove default `[cam]` section from `crowsnest.conf` and add
+
+```ini
+[include klipper-config/crowsnest.conf]
+```
+
 If webcam does not work, crowsnest may need to be recompiled manually. Run
 
 ```shell
