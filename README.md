@@ -4,7 +4,7 @@ My own private klipper config - feel free to copy parts of it, but note that it 
 
 [Pinout](./_PINOUT.md)
 
-This config is now for use with Moonraker.
+This config is for Moonraker.
 
 ## Usage
 
@@ -14,10 +14,13 @@ Clone the repo
 git clone https://github.com/mdvorak/klipper-config.git
 ```
 
-Edit `printer.cfg` file with following code
+Edit `printer.cfg` file with following code (omit first line if not using [Mainsail](https://github.com/mainsail-crew/mainsail-config#readme)):
 
 ```ini
+[include mainsail.cfg]
 [include klipper-config/*.cfg]
+# For standalone use without ERCF, include
+[include klipper-config/filament_loading/*.cfg]
 ```
 
 ### Moonraker
@@ -29,7 +32,6 @@ sudo apt update
 sudo apt upgrade -y
 ```
 
-
 Add this section to `moonraker.conf`
 
 ```ini
@@ -40,6 +42,10 @@ path: ~/klipper-config
 origin: https://github.com/mdvorak/klipper-config.git
 managed_services: klipper
 ```
+
+### Crowsnest
+
+My own webcam config is under [crowsnest.conf](./crowsnest.conf).
 
 ### ERCF
 
@@ -96,7 +102,23 @@ cd ~
 git clone https://github.com/moggieuk/ERCF-Software-V3.git
 ```
 
-Note that it is not needed to run `install.sh`, since config is already under ERCF directory in this repo.
+Run `install.sh`, there is however no need to generate config, since it is already present in the [ERCF](./ERCF) directory.
+
+```shell
+cd ~/ERCF-Software-V3
+./install.sh -i -c /tmp -k /tmp 
+```
+
+Update `printer.cfg` as follows, includes order is important
+
+```ini
+[include mainsail.cfg]
+[include klipper-config/*.cfg]
+### For standalone use without ERCF, include
+#[include klipper-config/filament_loading/*.cfg]
+### ERCF
+[include klipper-config/ERCF/*.cfg]
+```
 
 Add update lines to `moonraker.conf`
 
