@@ -8,10 +8,11 @@ This config is for [Moonraker](https://moonraker.readthedocs.io/en/latest/).
 
 ## Usage
 
-Clone the repo
+Clone the repo and add config symlink
 
 ```shell
 git clone https://github.com/mdvorak/klipper-config.git
+ln -s ~/klipper-config ~/printer_data/config/klipper-config
 ```
 
 Edit `printer.cfg` file with following code (omit first line if not using [Mainsail](https://github.com/mainsail-crew/mainsail-config#readme)):
