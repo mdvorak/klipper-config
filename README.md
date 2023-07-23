@@ -135,7 +135,6 @@ Update `printer.cfg` as follows, includes order is important
 [include ercf_hardware.cfg]
 #[include ercf_menu.cfg]
 [include ercf_software.cfg]
-[include ercf_vars.cfg]
 [include ercf_parameters.cfg]
 ```
 
