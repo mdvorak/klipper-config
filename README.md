@@ -4,7 +4,7 @@ My own private klipper config - feel free to copy parts of it, but note that it 
 
 [Pinout](./_PINOUT.md)
 
-This config is for Moonraker.
+This config is for [Moonraker](https://moonraker.readthedocs.io/en/latest/).
 
 ## Usage
 
@@ -45,7 +45,15 @@ managed_services: klipper
 
 ### Crowsnest
 
-My own webcam config is under [crowsnest.conf](./crowsnest.conf).
+My own [crowsnest](https://github.com/mainsail-crew/crowsnest#readme) config is under [crowsnest.conf](./crowsnest.conf).
+
+If webcam does not work, crowsnest may need to be recompiled manually. Run
+
+```shell
+cd ~/crowsnest
+git pull
+sudo make install
+```
 
 ### ERCF
 
