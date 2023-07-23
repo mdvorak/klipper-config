@@ -120,7 +120,8 @@ Run `install.sh`, there is however no need to generate config, since it is alrea
 
 ```shell
 cd ~/ERCF-Software-V3
-./install.sh -i -c /tmp -k /tmp 
+./install.sh -i -c /tmp -k /tmp
+cp ~/klipper-config/ERCF/ercf_parameters.cfg ~/printer_data/config/
 ```
 
 Update `printer.cfg` as follows, includes order is important
@@ -128,11 +129,20 @@ Update `printer.cfg` as follows, includes order is important
 ```ini
 [include mainsail.cfg]
 [include klipper-config/*.cfg]
+
 ### For standalone use without ERCF, include
 #[include klipper-config/filament_loading/*.cfg]
+
 ### ERCF
-[include klipper-config/ERCF/*.cfg]
+[include klipper-config/ERCF/ercf_hardware.cfg]
+#[include klipper-config/ERCF/ercf_menu.cfg]
+#[include klipper-config/ERCF/ercf_parameters.cfg] # Use local copy
+[include klipper-config/ERCF/ercf_software.cfg]
+[include klipper-config/ERCF/ercf_vars.cfg]
+[include ercf_parameters.cfg]
 ```
+
+**NOTE During calibration, local copy of the `ercf_parameters.cfg` is updated. Don't forget to commit it back to the repository.**
 
 Add update lines to `moonraker.conf`
 
