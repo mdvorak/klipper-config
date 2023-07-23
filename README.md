@@ -131,6 +131,7 @@ Update `printer.cfg` as follows, includes order is important
 #[include klipper-config/filament_loading/*.cfg]
 
 ### ERCF
+# If local copies of the files are modified, don't forget to commit them back to the repository!
 [include ercf_hardware.cfg]
 #[include ercf_menu.cfg]
 [include ercf_software.cfg]
