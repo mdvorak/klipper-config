@@ -1,5 +1,16 @@
 # Based on https://forum.vorondesign.com/threads/protect-your-klipper-printer-mainsail-password-ssl-firewall-rules.469/
 
+# Install required packages
+# sudo apt install apache2-utils openssl
+
+# Store user password
+# sudo htpasswd -c /etc/nginx/0-passwords.txt  USER_NAME
+
+# Generate certificate with
+# sudo openssl req -x509 -nodes -days 36500 -newkey rsa:2048  -keyout /etc/nginx/0-snakeoil.key  -out /etc/nginx/0-snakeoil.crt
+
+# And overwrite file in /etc/nginx/sites-available/mainsail
+
 server { 
     listen 80 default_server;
     return 301 https://$host$request_uri;
