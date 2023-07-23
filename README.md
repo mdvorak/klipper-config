@@ -117,8 +117,8 @@ Run `install.sh`, there is however no need to generate config, since it is alrea
 
 ```shell
 cd ~/ERCF-Software-V3
-./install.sh -i -c /tmp -k /tmp
-cp ~/klipper-config/ERCF/ercf_parameters.cfg ~/printer_data/config/
+./install.sh
+cp ~/klipper-config/ERCF/*.cfg ~/printer_data/config/
 ```
 
 Update `printer.cfg` as follows, includes order is important
@@ -131,29 +131,29 @@ Update `printer.cfg` as follows, includes order is important
 #[include klipper-config/filament_loading/*.cfg]
 
 ### ERCF
-[include klipper-config/ERCF/ercf_hardware.cfg]
-#[include klipper-config/ERCF/ercf_menu.cfg]
-#[include klipper-config/ERCF/ercf_parameters.cfg] # Use local copy
-[include klipper-config/ERCF/ercf_software.cfg]
-[include klipper-config/ERCF/ercf_vars.cfg]
+[include ercf_hardware.cfg]
+#[include ercf_menu.cfg]
+[include ercf_software.cfg]
+[include ercf_vars.cfg]
 [include ercf_parameters.cfg]
 ```
 
-**NOTE During calibration, local copy of the `ercf_parameters.cfg` is updated. Don't forget to commit it back to the repository.**
+**NOTE If local copies of the files are modified, don't forget to commit them back to the repository!**
 
 Add update lines to `moonraker.conf`
 
 ```ini
-[update_manager bossa]
-type: git_repo
-primary_branch: main
-path: ~/BOSSA
-origin: https://github.com/shumatech/BOSSA.git
-
 [update_manager ercf-happy_hare]
 type: git_repo
 path: ~/ERCF-Software-V3
 origin: https://github.com/moggieuk/ERCF-Software-V3.git
 install_script: install.sh
 managed_services: klipper
+
+[update_manager bossa]
+type: git_repo
+primary_branch: main
+path: ~/BOSSA
+origin: https://github.com/shumatech/BOSSA.git
+is_system_service: False
 ```
