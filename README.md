@@ -19,7 +19,7 @@ Edit `printer.cfg` file with following code (omit first line if not using [Mains
 
 ```ini
 [include mainsail.cfg]
-[include klipper-config/*.cfg]
+[include klipper-config/macros/*.cfg]
 # For standalone use without ERCF, include
 [include klipper-config/filament_loading/*.cfg]
 ```
@@ -125,7 +125,7 @@ Update `printer.cfg` as follows, includes order is important
 
 ```ini
 [include mainsail.cfg]
-[include klipper-config/*.cfg]
+[include klipper-config/macros/*.cfg]
 
 ### For standalone use without ERCF, include
 #[include klipper-config/filament_loading/*.cfg]
