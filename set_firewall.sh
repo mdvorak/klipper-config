@@ -65,3 +65,6 @@ iptables -A icmp_packets -p icmp -s 0/0 --icmp-type 11 -j ACCEPT
 iptables -A icmp_packets -p icmp -s 0/0                -j DROP
 #------------------------------------------------------------------------------
 echo "*** rc.firewall was executed on $(uname -n) ***"
+
+echo "Don't forget to persist rules with"
+echo "sudo iptables-save > /etc/iptables/rules.v4"
