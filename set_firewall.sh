@@ -1,6 +1,8 @@
 #!/bin/sh
 set -e
 
+# Based on https://forum.vorondesign.com/threads/protect-your-klipper-printer-mainsail-password-ssl-firewall-rules.469/
+
 # Requires
 # sudo apt install iptables-persistent
 
