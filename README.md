@@ -1,8 +1,6 @@
-# Custom Klipper Config
+# Voron 2.4 Klipper Config
 
-My own private klipper config - feel free to copy parts of it, but note that it is tailored to my HW modified Ender 3 V2.
-
-[Pinout](./_PINOUT.md)
+My own private klipper config.
 
 This config is for [Moonraker](https://moonraker.readthedocs.io/en/latest/).
 
