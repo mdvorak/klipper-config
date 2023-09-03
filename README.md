@@ -131,7 +131,7 @@ Update `printer.cfg` as follows, includes order is important
 ### ERCF
 # If local copies of the files are modified, don't forget to commit them back to the repository!
 [include ercf_hardware.cfg]
-#[include ercf_menu.cfg]
+[include ercf_menu.cfg]
 [include ercf_software.cfg]
 [include ercf_parameters.cfg]
 ```
