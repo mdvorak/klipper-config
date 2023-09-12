@@ -1,117 +1,29 @@
 # Voron 2.4 Klipper Config
 
-My own private klipper config.
+Private [Klipper](https://www.klipper3d.org/) config for [BTT Pi](https://github.com/bigtreetech/CB1). 
+Based on [Mainsail](https://github.com/mainsail-crew/mainsail-config#readme).
 
-This config is for [Moonraker](https://moonraker.readthedocs.io/en/latest/).
+Using [Fly-SB2040-V2](https://mellow-3d.github.io/fly_sb2040_v2_general.html) toolhead board, connected via CAN bus.
 
-## Usage
+Optionally using [ERCF](https://github.com/EtteGit/EnragedRabbitProject).
 
-Clone the repo and add config symlink
+## Installation
+
+It is recommended to update all modules first, do that via Mainsail UI.
+
+Clone all required repositories
 
 ```shell
+cd
 git clone https://github.com/mdvorak/klipper-config.git
+git clone https://github.com/Arksine/katapult
+git clone https://github.com/moggieuk/ERCF-Software-V3.git
+git clone https://github.com/shumatech/BOSSA.git
+
 ln -s ~/klipper-config ~/printer_data/config/klipper-config
 ```
 
-Edit `printer.cfg` file with following code (omit first line if not using [Mainsail](https://github.com/mainsail-crew/mainsail-config#readme)):
-
-```ini
-[include mainsail.cfg]
-[include klipper-config/printer.cfg]
-# For standalone use without ERCF, include
-[include klipper-config/filament_loading/*.cfg]
-```
-
-### Moonraker
-
-Update system - Moonraker can do that for you.
-
-```shell
-sudo apt update
-sudo apt upgrade -y
-```
-
-Add this section to `moonraker.conf`
-
-```ini
-[update_manager klipper-config]
-type: git_repo
-primary_branch: main
-path: ~/klipper-config
-origin: https://github.com/mdvorak/klipper-config.git
-managed_services: klipper
-```
-
-### Crowsnest
-
-My own [crowsnest](https://github.com/mainsail-crew/crowsnest#readme) config.
-
-Replace default `[cam]` config with the one from [crowsnest.conf](./crowsnest.conf).
-
-If webcam does not work, crowsnest may need to be recompiled manually. Run
-
-```shell
-cd ~/crowsnest
-git pull
-sudo make install
-```
-
 ### ERCF
-
-Installation according to [ERCF Manual](https://raw.githubusercontent.com/EtteGit/EnragedRabbitProject/no_toolhead_sensor/Documentation/ERCF_Manual.pdf).
-
-Build flash utility
-
-```shell
-sudo apt install -y libreadline-dev libwxgtk3.0-*
-cd ~
-git clone https://github.com/shumatech/BOSSA.git
-cd BOSSA
-make
-sudo cp bin/bossac /usr/local/bin
-```
-
-Go to klipper
-
-```shell
-cd ~/klipper
-make clean
-make menuconfig
-```
-
-Configure it as follows
-
-```
-[*] Enable extra low-level configuration options
-    Micro-controller Architecture (SAMC21/SAMD21/SAMD51/SAME5x)  --->
-    Processor model (SAMD21G18 (Arduino Zero))  --->
-    Bootloader offset (8KiB bootloader (Arduino Zero))  --->
-    Clock Reference (Internal clock)  --->
-    Communication interface (USB)  --->
-    USB ids  --->
-()  GPIO pins to set at micro-controller startup (NEW)
-```
-
-Then build it and flash it, see [Enter Bootloader Mode](https://wiki.seeedstudio.com/Seeeduino-XIAO/#enter-bootloader-mode).
-
-> * Connect the Seeed Studio XIAO SAMD21 to your computer.
-> * Use tweezers or short lines to short the RST pins in the diagram twice.
-> * The orange LED lights flicker on and light up.
-
-Find out correct device with `ls -l /dev/serial/by-id/`, and flash it
-
-```shell
-sudo /usr/local/bin/bossac -i -d -p /dev/ttyACM0 -e -w -v -R --offset=0x2000 out/klipper.bin
-```
-
-Install [ERCF "Happy Hare"](https://github.com/moggieuk/ERCF-Software-V3)
-
-```shell
-cd ~
-git clone https://github.com/moggieuk/ERCF-Software-V3.git
-```
-
-Run `install.sh`, there is however no need to generate config, since it is already present in the [ERCF](./ERCF) directory.
 
 ```shell
 cd ~/ERCF-Software-V3
@@ -119,39 +31,44 @@ cd ~/ERCF-Software-V3
 cp ~/klipper-config/ERCF/*.cfg ~/printer_data/config/
 ```
 
-Update `printer.cfg` as follows, includes order is important
+**NOTE If local copies of ERCF files are modified, don't forget to commit them back to the repository!**
+
+To flash new firmware, see [ERCF.md](./ERCF.md).
+
+### Crowsnest
+
+Replace default `[cam]` config with the one from [crowsnest.conf](./crowsnest.conf).
+
+### Security
+
+_TODO nginx config, SSL certs, firewall_
+
+### Moonraker
+
+Update `moonraker.conf` in `~/printer_data/config` as listed in [moonraker.conf](./moonraker.conf).
+
+## Usage
+
+Update `printer.cfg` in `~/printer_data/config` as follows, includes order is important
 
 ```ini
 [include mainsail.cfg]
+[include print_area_bed_mesh.cfg]
 [include klipper-config/printer.cfg]
 
-### For standalone use without ERCF, include
+# For standalone use without ERCF, include
 #[include klipper-config/filament_loading/*.cfg]
 
-### ERCF
+# ERCF
 # If local copies of the files are modified, don't forget to commit them back to the repository!
 [include ercf_hardware.cfg]
 [include ercf_menu.cfg]
 [include ercf_software.cfg]
 [include ercf_parameters.cfg]
-```
 
-**NOTE If local copies of the files are modified, don't forget to commit them back to the repository!**
+[save_variables]
+filename: ~/printer_data/config/ercf_vars.cfg
 
-Add update lines to `moonraker.conf`
-
-```ini
-[update_manager ercf-happy_hare]
-type: git_repo
-path: ~/ERCF-Software-V3
-origin: https://github.com/moggieuk/ERCF-Software-V3.git
-install_script: install.sh
-managed_services: klipper
-
-[update_manager bossa]
-type: git_repo
-primary_branch: master
-path: ~/BOSSA
-origin: https://github.com/shumatech/BOSSA.git
-is_system_service: False
+#[stepper_z]
+#position_endstop: 1.000
 ```
