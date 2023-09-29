@@ -26,14 +26,11 @@ ln -s ~/klipper-config ~/printer_data/config/klipper-config
 ### ERCF
 
 ```shell
-cd ~/ERCF-Software-V3
-./install.sh
-cp ~/klipper-config/ERCF/*.cfg ~/printer_data/config/
+cp ~/ERCF-Software-V3/extras/*.py ~/klipper/klippy/extras/
+cp ~/klipper-config/ERCF/ercf_vars.cfg ~/printer_data/config/
 ```
 
-**NOTE If local copies of ERCF files are modified, don't forget to commit them back to the repository!**
-
-To flash new firmware, see [ERCF.md](./ERCF.md).
+To flash a new EasyBRD firmware, see [ERCF.md](./ERCF.md).
 
 ### Crowsnest
 
@@ -53,18 +50,14 @@ Update `printer.cfg` in `~/printer_data/config` as follows, includes order is im
 
 ```ini
 [include mainsail.cfg]
+
+# host MCU service is preinstalled and ready to use with:
+[mcu CB1]
+serial: /tmp/klipper_host_mcu
+
 [include print_area_bed_mesh.cfg]
 [include klipper-config/printer.cfg]
-
-# For standalone use without ERCF, include
-#[include klipper-config/filament_loading/*.cfg]
-
-# ERCF
-# If local copies of the files are modified, don't forget to commit them back to the repository!
-[include ercf_hardware.cfg]
-[include ercf_menu.cfg]
-[include ercf_software.cfg]
-[include ercf_parameters.cfg]
+[include klipper-config/ercf.cfg]
 
 [save_variables]
 filename: ~/printer_data/config/ercf_vars.cfg
