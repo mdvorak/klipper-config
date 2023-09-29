@@ -44,6 +44,10 @@ _TODO nginx config, SSL certs, firewall_
 
 Update `moonraker.conf` in `~/printer_data/config` as listed in [moonraker.conf](./moonraker.conf).
 
+### DS18B20 Temperature Sensors
+
+See [DS18B20 on BigTreeTech Pi 1.2](https://gist.github.com/mdvorak/2fccca3fa9f76f5a2e11e567797c76d6).
+
 ## Usage
 
 Update `printer.cfg` in `~/printer_data/config` as follows, includes order is important
