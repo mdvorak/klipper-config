@@ -48,6 +48,11 @@ Update `moonraker.conf` in `~/printer_data/config` as listed in [moonraker.conf]
 
 See [DS18B20 on BigTreeTech Pi 1.2](https://gist.github.com/mdvorak/2fccca3fa9f76f5a2e11e567797c76d6).
 
+## Fly-SB2040-V2 Toolhead PCB
+
+See https://mellow-3d.github.io/fly_sb2040_v2_canboot_can.html#compile-katapult-firmware for installation and
+flashing instructions.
+
 ## Usage
 
 Update `printer.cfg` in `~/printer_data/config` as follows, includes order is important
