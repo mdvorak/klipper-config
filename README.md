@@ -59,17 +59,8 @@ Update `printer.cfg` in `~/printer_data/config` as follows, includes order is im
 
 ```ini
 [include mainsail.cfg]
-
-# host MCU service is preinstalled and ready to use with:
-[mcu CB1]
-serial: /tmp/klipper_host_mcu
-
 [include print_area_bed_mesh.cfg]
 [include klipper-config/printer.cfg]
-[include klipper-config/ercf.cfg]
-
-[save_variables]
-filename: ~/printer_data/config/ercf_vars.cfg
 
 #[stepper_z]
 #position_endstop: 1.000
