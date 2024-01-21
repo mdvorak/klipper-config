@@ -10,7 +10,6 @@ sudo apt install -y libreadline-dev libwxgtk3.0-*
 # git clone https://github.com/shumatech/BOSSA.git
 cd ~/BOSSA
 make
-sudo cp bin/bossac /usr/local/bin
 ```
 
 Go to klipper
@@ -43,5 +42,5 @@ Then build it and flash it, see [Enter Bootloader Mode](https://wiki.seeedstudio
 Find out correct device with `ls -l /dev/serial/by-id/`, and flash it
 
 ```shell
-sudo /usr/local/bin/bossac -i -d -p /dev/ttyACM0 -e -w -v -R --offset=0x2000 out/klipper.bin
+sudo ~/BOSSA/bin/bossac -i -d -p /dev/ttyACM1 -e -w -v -R --offset=0x2000 ~/klipper/out/klipper.bin
 ```
