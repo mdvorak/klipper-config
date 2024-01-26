@@ -9,7 +9,7 @@
 # sudo chmod 640 /etc/nginx/0-passwords.txt
 
 # Generate certificate with
-# sudo openssl req -x509 -nodes -days 36500 -newkey rsa:2048 -subj "/C=CZ/O=3D Printer/CN=octopi.local" -addext "subjectAltName = DNS:octopi.local,DNS:192.168.0.6"  -keyout /etc/nginx/0-snakeoil.key  -out /etc/nginx/0-snakeoil.crt
+# sudo openssl req -x509 -nodes -days 36500 -newkey rsa:2048 -subj "/C=CZ/O=Voron/CN=voron.local" -addext "subjectAltName = DNS:voron.local,DNS:192.168.0.41" -keyout /etc/nginx/0-snakeoil.key  -out /etc/nginx/0-snakeoil.crt
 
 # And overwrite file in /etc/nginx/sites-available/mainsail
 
