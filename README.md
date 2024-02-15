@@ -1,6 +1,6 @@
 # Voron 2.4 Klipper Config
 
-Private [Klipper](https://www.klipper3d.org/) config for [BTT Pi](https://github.com/bigtreetech/CB1). 
+Private [Klipper](https://www.klipper3d.org/) config for [BTT Pi](https://github.com/bigtreetech/CB1).
 Based on [Mainsail](https://github.com/mainsail-crew/mainsail-config#readme).
 
 Using [Fly-SB2040-V2](https://mellow-3d.github.io/fly_sb2040_v2_general.html) toolhead board, connected via CAN bus.
@@ -59,9 +59,8 @@ Update `printer.cfg` in `~/printer_data/config` as follows, includes order is im
 
 ```ini
 [include mainsail.cfg]
-[include print_area_bed_mesh.cfg]
 [include klipper-config/printer.cfg]
-
-#[stepper_z]
-#position_endstop: 1.000
+[include ./KAMP/Adaptive_Meshing.cfg]
+[include ./KAMP/Line_Purge.cfg]
+[include ./KAMP/Smart_Park.cfg]
 ```
