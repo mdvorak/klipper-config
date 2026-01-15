@@ -8,6 +8,7 @@ popd
 pushd ~/klipper
 git pull
 make clean
+make -j4 KCONFIG_CONFIG=~/klipper-config/klipper/config.linux menuconfig
 make -j4 KCONFIG_CONFIG=~/klipper-config/klipper/config.linux
 
 make flash
