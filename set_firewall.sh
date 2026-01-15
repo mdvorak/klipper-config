@@ -45,7 +45,7 @@ iptables -A INPUT  -p tcp  --dport 7125 -s 192.168.0.9    -j ACCEPT
 
 #**** WebRTC
 iptables -I INPUT -p udp -s 192.168.0.1    -j DROP
-iptables -I INPUT -p udp -d 192.158.0.255  -j DROP
+iptables -I INPUT -p udp -d 192.168.0.255  -j DROP
 iptables -I INPUT -p udp -s 192.168.0.0/24 --dport 1024:65535 -j ACCEPT
 
 #***** allow mDNS
