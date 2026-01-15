@@ -1,7 +1,7 @@
 # Based on https://forum.vorondesign.com/threads/protect-your-klipper-printer-mainsail-password-ssl-firewall-rules.469/
 
 # Install required packages
-# sudo apt install apache2-utils openssl
+# sudo apt install apache2-utils openssl nginx
 
 # Store user password
 # sudo htpasswd -c /etc/nginx/0-passwords.txt  USER_NAME
@@ -10,6 +10,9 @@
 
 # Generate certificate with
 # sudo openssl req -x509 -nodes -days 36500 -newkey rsa:2048 -subj "/C=CZ/O=Voron/CN=voron.local" -addext "subjectAltName = DNS:voron.local,DNS:192.168.0.41" -keyout /etc/nginx/0-snakeoil.key  -out /etc/nginx/0-snakeoil.crt
+# sudo chmod 640 /etc/nginx/0-snakeoil.*
+# sudo chown root:www-data /etc/nginx/0-snakeoil.*
+# sudo usermod -aG www-data mikee
 
 # And overwrite file in /etc/nginx/sites-available/mainsail
 
@@ -39,7 +42,7 @@ server {
     gzip_types text/plain text/css text/xml text/javascript application/javascript application/x-javascript application/json application/xml;
 
     # web_path from mainsail static files
-    root /home/biqu/mainsail;
+    root /home/mikee/mainsail;
 
     index index.html;
     server_name _;
