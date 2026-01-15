@@ -1,36 +1,31 @@
 # Voron 2.4 Klipper Config
 
-Private [Klipper](https://www.klipper3d.org/) config for [BTT Pi](https://github.com/bigtreetech/CB1).
+Private [Klipper](https://www.klipper3d.org/) config for BTT Pi, using Armbian.
 Based on [Mainsail](https://github.com/mainsail-crew/mainsail-config#readme).
 
 Using [Fly-SB2040-V2](https://mellow-3d.github.io/fly_sb2040_v2_general.html) toolhead board, connected via CAN bus.
 
-Optionally using [ERCF](https://github.com/EtteGit/EnragedRabbitProject).
-
 ## Installation
 
-It is recommended to update all modules first, do that via Mainsail UI.
+Use [kiuah](https://github.com/dw-0/kiauh#klipper-installation-and-update-helper) to install
 
 Clone all required repositories
 
 ```shell
-cd
-git clone https://github.com/mdvorak/klipper-config.git
+cd ~
+git clone https://github.com/dw-0/kiauh#klipper-installation-and-update-helper
+git clone https://github.com/mdvorak/klipper-config.git -b kms
 git clone https://github.com/Arksine/katapult
-git clone https://github.com/moggieuk/ERCF-Software-V3.git
-git clone https://github.com/shumatech/BOSSA.git
+git clone https://github.com/pstolarz/w1-gpio-cl.git
+git clone https://github.com/protoloft/klipper_z_calibration.git
+
+~/kiauh/kiauh.sh
 
 ln -s ~/klipper-config ~/printer_data/config/klipper-config
+~/klipper_z_calibration/install.sh
 ```
 
-### ERCF
-
-```shell
-cp ~/ERCF-Software-V3/extras/*.py ~/klipper/klippy/extras/
-cp ~/klipper-config/ERCF/ercf_vars.cfg ~/printer_data/config/
-```
-
-To flash a new EasyBRD firmware, see [ERCF.md](./ERCF.md).
+# TODO linux mcp flash and service, realtime config
 
 ### Crowsnest
 
@@ -38,7 +33,8 @@ Replace default `[cam]` config with the one from [crowsnest.conf](./crowsnest.co
 
 ### Security
 
-_TODO nginx config, SSL certs, firewall_
+[nginx config](./nginx/mainsail)
+[firewall](./set_firewall.sh)
 
 ### Moonraker
 
