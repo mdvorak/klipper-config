@@ -2,7 +2,7 @@
 set -e
 
 # Requires
-# sudo apt install iptables-persistent
+# sudo apt install iptables netfilter-persistent
 
 PATH=/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin
 #------------------------------------------------------------------------------
@@ -73,4 +73,4 @@ iptables -A icmp_packets -p icmp -s 0/0                -j DROP
 echo "*** rc.firewall was executed on $(uname -n) ***"
 
 echo "Don't forget to persist rules with"
-echo "sudo sh -c 'iptables-save > /etc/iptables/rules.v4'"
+echo "sudo netfilter-persistent save"
